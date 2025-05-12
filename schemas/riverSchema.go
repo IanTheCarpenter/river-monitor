@@ -1,6 +1,6 @@
-package schemas
+package river
 
-type RiverSchema struct {
+type Schema struct {
 	RiverName           string               `bson:"river_name"`
 	DataCollectionSites []DataCollectionSite `bson:"data_collection_sites"`
 }

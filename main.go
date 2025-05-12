@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	// "github.com/IanTheCarpenter/river-monitor/schemas/riverSchema.go"
+	river "github.com/IanTheCarpenter/river-monitor/schemas"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
@@ -35,7 +35,7 @@ func main() {
 	filter := bson.D{{"river_name", "colorado"}}
 
 	// var bson_result bson.D
-	var result RiverSchema
+	var result river.Schema
 
 	err = collection.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {
