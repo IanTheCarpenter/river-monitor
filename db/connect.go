@@ -1,12 +1,35 @@
-package connect
+package db
 
 import (
-    "context"
-    "time"
+	"os"
 
-    "go.mongodb.org/mongo-driver/v2/mongo"
-    "go.mongodb.org/mongo-driver/v2/mongo/options"
-    "go.mongodb.org/mongo-driver/v2/mongo/readpref"
+	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-client, _ := mongo.Connect(options.Client().ApplyURI("mongodb://localhost:27017"))
+var DB *mongo.Client
+var RIVER_DEFINITIONS *mongo.Collection
+var RIVER_REPORTS *mongo.Collection
+var USER_DATA *mongo.Collection
+
+func Init() {
+
+	err := godotenv.Load()
+	if err != nil {
+		panic("UNABLE TO LOAD ENV FILE")
+	}
+
+	connection_string := os.Getenv("CONNECTION_STRING")
+	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
+
+	connection_options := options.Client().ApplyURI(connection_string).SetServerAPIOptions(serverAPI)
+
+	DB, err := mongo.Connect(connection_options)
+	if err != nil {
+		panic(err)
+	}
+	RIVER_DEFINITIONS = DB.Database("RIVER_MONITOR").Collection("RIVER_DEFINITIONS")
+	RIVER_REPORTS = DB.Database("RIVER_MONITOR").Collection("RIVER_REPORTS")
+
+}
