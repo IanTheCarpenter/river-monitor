@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-	river_data.Update()
 	db.Init()
+	river_data.Update()
 
 	go forecaster.Init()
 
