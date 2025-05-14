@@ -5,13 +5,12 @@ import (
 
 	"github.com/IanTheCarpenter/river-monitor/db"
 	"github.com/IanTheCarpenter/river-monitor/forecaster"
-	"github.com/IanTheCarpenter/river-monitor/river_data"
 	"github.com/IanTheCarpenter/river-monitor/routing"
 )
 
 func main() {
 	db.Init()
-	river_data.Update()
+	// river_data.Update()
 
 	go forecaster.Init()
 
