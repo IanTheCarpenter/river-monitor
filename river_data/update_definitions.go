@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
+	// "github.com/IanTheCarpenter/river-monitor/river_data"
 	"github.com/IanTheCarpenter/river-monitor/schemas"
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
@@ -33,8 +34,14 @@ func Update() {
 func init_rivers() []schemas.River {
 	output := []schemas.River{}
 
-	output = append(output, ColoradoRiverInit())
-	output = append(output, SanGabrielRiverInit())
+	output = append(output, coloradoRiver)
+	output = append(output, sanGabrielRiver)
 
+	for _, river := range output {
+		err := validate(river)
+		if err != nil {
+			panic(err)
+		}
+	}
 	return output
 }
