@@ -5,13 +5,12 @@ import (
 	"fmt"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
-	// "github.com/IanTheCarpenter/river-monitor/river_data"
 	"github.com/IanTheCarpenter/river-monitor/schemas"
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func Update() {
-
+	init_rivers()
 	fmt.Println("Clearing Database...")
 	_, err := db.RIVER_DEFINITIONS.DeleteMany(context.TODO(), bson.D{{}})
 	if err != nil {

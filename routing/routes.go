@@ -1,4 +1,4 @@
-package router
+package routing
 
 import (
 	"net/http"
@@ -7,9 +7,9 @@ import (
 )
 
 func Init() *http.ServeMux {
-	router := http.NewServeMux()
-	router.HandleFunc("GET /", handlers.GetRoot)
-	router.HandleFunc("GET /rivers/{river_name}", handlers.GetFullRiverReport)
+	r := http.NewServeMux()
+	r.HandleFunc("GET /", handlers.GetRoot)
+	r.HandleFunc("GET /rivers/{river_name}", handlers.GetFullRiverReport)
 
-	return router
+	return r
 }
