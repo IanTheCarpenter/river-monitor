@@ -24,8 +24,7 @@ type SiteSample struct {
 	Flow      float64
 }
 
-func Init() {
-
+func Start() {
 	NS_TO_MINUTES := 60000000000
 
 	// begin loop
