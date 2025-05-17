@@ -1,4 +1,4 @@
-package forecaster
+package main
 
 import (
 	"github.com/IanTheCarpenter/river-monitor/schemas"

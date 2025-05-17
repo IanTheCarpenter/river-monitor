@@ -1,7 +1,11 @@
 github.com/IanTheCarpenter/river-monitor v0.0.0-20250514162629-435809759d51 h1:lEgEqeQEjuydxB7Wfxd/kqqxTKKi6MUL47q5ciPtJ4U=
 github.com/IanTheCarpenter/river-monitor v0.0.0-20250514162629-435809759d51/go.mod h1:SUe1b4AyvRNB878Oby7cj7e3Yfxthtx4vj+P4PCvFyo=
+github.com/IanTheCarpenter/river-monitor v0.0.0-20250517182614-ee5728201e24 h1:UhYM852ZoSQS377Dg6zsJFtzCxDhWPQ3vAF8E/pZa8M=
+github.com/IanTheCarpenter/river-monitor v0.0.0-20250517182614-ee5728201e24/go.mod h1:1Pn9brngo5/LEVG6o7RCR6g3iTCHqUbdPZR78mqT0lU=
 github.com/IanTheCarpenter/river-monitor/db v0.0.0-20250517180644-0718a9129975 h1:lMMjGiook6H7WYMa/ZHXrbh5+hP7Jff5JiEMoz80GoM=
 github.com/IanTheCarpenter/river-monitor/db v0.0.0-20250517180644-0718a9129975/go.mod h1:nogz5gVeGWjmbaebdJS6C1aU5ZmXgfqFHUkWFtox7P8=
+github.com/IanTheCarpenter/river-monitor/schemas v0.0.0-20250517182614-ee5728201e24 h1:54IzBdTUzjSytnPiCrpbsiR5ONKY1Bkp8WQ1pZe0J+8=
+github.com/IanTheCarpenter/river-monitor/schemas v0.0.0-20250517182614-ee5728201e24/go.mod h1:59ztYAe9hePUk8srircaQD4fsXQpvLlLUGq5SUHwwEQ=
 github.com/golang/snappy v1.0.0 h1:Oy607GVXHs7RtbggtPBnr2RmDArIsAefDwvrdWvRhGs=
 github.com/golang/snappy v1.0.0/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=

@@ -1,4 +1,4 @@
-package forecaster
+package main
 
 import (
 	"context"
