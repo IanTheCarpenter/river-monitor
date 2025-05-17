@@ -1,4 +1,4 @@
-package utils
+package main
 
 import (
 	"context"
@@ -15,13 +15,14 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-func Fetch_river_definitions() ([]schemas.River, error) {
-
+func fetch_river_definitions() ([]schemas.River, error) {
+	fmt.Println("successfully entered Fetch_river_definitions")
 	// var bson_result bson.D
 	// var result river.Schema
 
 	bson_response, err := db.RIVER_DEFINITIONS.Find(context.TODO(), bson.D{{}}, options.Find())
 	if err != nil {
+		fmt.Println("ERROR FETCHING RIVER DEFS")
 		return nil, err
 	}
 

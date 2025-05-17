@@ -1,6 +1,7 @@
 package db
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -14,10 +15,10 @@ var RIVER_REPORTS *mongo.Collection
 var USER_DATA *mongo.Collection
 
 func Init() {
-
 	err := godotenv.Load()
 	if err != nil {
-		panic("UNABLE TO LOAD ENV FILE")
+		fmt.Println("UNABLE TO LOAD ENV FILE")
+		panic(err)
 	}
 
 	connection_string := os.Getenv("CONNECTION_STRING")

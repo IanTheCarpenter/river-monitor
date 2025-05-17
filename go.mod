@@ -22,3 +22,5 @@ require (
 	golang.org/x/sync v0.11.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
 )
+
+replace github.com/IanTheCarpenter/river-monitor/db v0.0.0-20250517180644-0718a9129975 => /home/ian/AutoDidaction/Projects/river-monitor/db
