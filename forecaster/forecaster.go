@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
-	"github.com/IanTheCarpenter/river-monitor/schemas"
+	"github.com/IanTheCarpenter/river-monitor/forecaster/schemas"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
@@ -24,7 +24,7 @@ type SiteSample struct {
 	Flow      float64
 }
 
-func Start() {
+func main() {
 	NS_TO_MINUTES := 60000000000
 
 	// begin loop
@@ -82,13 +82,4 @@ func insert_forecast(forecast schemas.Forecast, river_objectID bson.ObjectID) {
 		// insert new document
 		db.RIVER_REPORTS.InsertOne(context.TODO(), forecast_bson)
 	}
-}
-
-func insertDataInDescendingOrder(data []SiteSample, sampletoinsert SiteSample) []SiteSample {
-	if len(data) == 0 || sampletoinsert.TimeStamp.After(data[0].TimeStamp) {
-		data = append(data, sampletoinsert)
-	} else {
-		data = append([]SiteSample{sampletoinsert}, data...)
-	}
-	return data
 }

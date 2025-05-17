@@ -1,7 +1,7 @@
 package river_data
 
 import (
-	"github.com/IanTheCarpenter/river-monitor/schemas"
+	"github.com/IanTheCarpenter/river-monitor/forecaster/schemas"
 )
 
 var sanGabrielRiver = schemas.River{

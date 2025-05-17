@@ -1,7 +1,7 @@
 package forecaster
 
 import (
-	"github.com/IanTheCarpenter/river-monitor/schemas"
+	"github.com/IanTheCarpenter/river-monitor/forecaster/schemas"
 )
 
 func analyze(telemetry SiteData, data_site schemas.DataCollectionSite, current_forecast *schemas.Forecast) {

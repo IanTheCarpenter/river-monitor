@@ -3,7 +3,7 @@ package river_data
 import (
 	"fmt"
 
-	"github.com/IanTheCarpenter/river-monitor/schemas"
+	"github.com/IanTheCarpenter/river-monitor/forecaster/schemas"
 )
 
 // A function that reads the river data object and checks that all the points of interest
