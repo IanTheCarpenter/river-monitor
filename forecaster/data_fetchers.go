@@ -173,3 +173,12 @@ func fetch_usgs_data(url string) ([]SiteSample, error) {
 // 	return output, nil
 
 // }
+
+func insertDataInDescendingOrder(data []SiteSample, sampletoinsert SiteSample) []SiteSample {
+	if len(data) == 0 || sampletoinsert.TimeStamp.After(data[0].TimeStamp) {
+		data = append(data, sampletoinsert)
+	} else {
+		data = append([]SiteSample{sampletoinsert}, data...)
+	}
+	return data
+}
