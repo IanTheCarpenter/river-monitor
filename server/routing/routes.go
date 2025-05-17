@@ -3,7 +3,7 @@ package routing
 import (
 	"net/http"
 
-	"github.com/IanTheCarpenter/river-monitor/handlers"
+	"github.com/IanTheCarpenter/river-monitor/server/handlers"
 )
 
 func Init() *http.ServeMux {
