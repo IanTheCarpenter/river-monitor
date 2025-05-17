@@ -5,8 +5,8 @@ go 1.23.5
 require go.mongodb.org/mongo-driver/v2 v2.2.1
 
 require (
-	github.com/IanTheCarpenter/river-monitor/db v0.0.0-20250517180644-0718a9129975 // indirect
-	github.com/IanTheCarpenter/river-monitor/schemas v0.0.0-20250517182614-ee5728201e24 // indirect
+	github.com/IanTheCarpenter/river-monitor/db v0.0.0-20250517180644-0718a9129975
+	github.com/IanTheCarpenter/river-monitor/schemas v0.0.0-20250517182614-ee5728201e24 
 )
 
 require (
