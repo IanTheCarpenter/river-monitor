@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
-	"github.com/IanTheCarpenter/river-monitor/forecaster/schemas"
+	"github.com/IanTheCarpenter/river-monitor/schemas"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
