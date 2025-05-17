@@ -1,0 +1,15 @@
+name: Auto-Containerize 
+
+on:
+  push
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and push image
+        run: |
+          docker login --username ianthecarpenter --password {{secrets.GH_PAT}} ghcr.io
+          docker build docker build . -t ghcr.io/ianthecarpenter/river-monitor-forecaster:latest
+          docker push ghcr.io/ianthecarpenter/river-monitor-forecaster:latest
