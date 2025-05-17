@@ -1,4 +1,4 @@
-package main
+package forecaster_logic
 
 import (
 	"github.com/IanTheCarpenter/river-monitor/schemas"

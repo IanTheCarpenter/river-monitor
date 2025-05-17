@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"context"
@@ -15,7 +15,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-func fetch_river_definitions() ([]schemas.River, error) {
+func Fetch_river_definitions() ([]schemas.River, error) {
 
 	// var bson_result bson.D
 	// var result river.Schema

@@ -7,6 +7,7 @@ import (
 
 	"github.com/IanTheCarpenter/river-monitor/db"
 	"github.com/IanTheCarpenter/river-monitor/schemas"
+	"github.com/IanTheCarpenter/river-monitor/utils"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
@@ -30,7 +31,7 @@ func main() {
 	// begin loop
 	for {
 		fmt.Println("Regenerating Forecasts...")
-		rivers, err := fetch_river_definitions()
+		rivers, err := utils.Fetch_river_definitions()
 		if err != nil {
 			fmt.Println("UNABLE TO FETCH RIVERS")
 			fmt.Println(err.Error())
