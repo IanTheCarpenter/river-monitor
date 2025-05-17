@@ -17,7 +17,7 @@ var USER_DATA *mongo.Collection
 func Init() {
 	connection_string := os.Getenv("CONNECTION_STRING")
 	if connection_string == "" {
-		fmt.Println("Loading env_vars from file...")
+		fmt.Println("Loading env vars from file...")
 		err := godotenv.Load()
 		if err != nil {
 			fmt.Println("UNABLE TO LOAD ENV FILE")
@@ -27,7 +27,7 @@ func Init() {
 		fmt.Println("...Done!")
 
 	} else {
-		fmt.Println("Env vars successfully loaded environment variables")
+		fmt.Println("Successfully loaded environment variables!")
 	}
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
 

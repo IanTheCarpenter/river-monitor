@@ -16,13 +16,12 @@ import (
 )
 
 func fetch_river_definitions() ([]schemas.River, error) {
-	fmt.Println("successfully entered Fetch_river_definitions")
 	// var bson_result bson.D
 	// var result river.Schema
 
 	bson_response, err := db.RIVER_DEFINITIONS.Find(context.TODO(), bson.D{{}}, options.Find())
 	if err != nil {
-		fmt.Println("ERROR FETCHING RIVER DEFS")
+		fmt.Println("ERROR FETCHING RIVER DEFINITIONS")
 		return nil, err
 	}
 

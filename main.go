@@ -61,7 +61,6 @@ func main() {
 				analyze(telemetry, data_site, &current_forecast)
 
 			}
-
 			insert_forecast(current_forecast, current_river.ObjectID)
 		}
 		fmt.Println("...Done!")
@@ -71,6 +70,8 @@ func main() {
 
 func insert_forecast(forecast schemas.Forecast, river_objectID bson.ObjectID) {
 	filter := bson.D{{Key: "river_object_id", Value: river_objectID}}
+
+	fmt.Printf("Inserting river forecast for: %s\n", forecast.River)
 
 	forecast_bson, err := bson.Marshal(forecast)
 	if err != nil {
