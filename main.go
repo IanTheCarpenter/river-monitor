@@ -47,7 +47,9 @@ func main() {
 			}
 
 			for _, data_site := range current_river.DataCollectionSites {
-				var telemetry SiteData
+				var telemetry = SiteData{
+					SiteName: data_site.Name,
+				}
 				switch data_site.Agency {
 				case "lcra":
 					telemetry.Records, err = fetch_lcra_data(data_site.URL)
@@ -71,8 +73,6 @@ func main() {
 func insert_forecast(forecast schemas.Forecast, river_objectID bson.ObjectID) {
 	filter := bson.D{{Key: "river_object_id", Value: river_objectID}}
 
-	fmt.Printf("Inserting river forecast for: %s\n", forecast.River)
-
 	forecast_bson, err := bson.Marshal(forecast)
 	if err != nil {
 		fmt.Printf("Unable to marshal forecast object: %s\n", forecast.River)
@@ -82,6 +82,11 @@ func insert_forecast(forecast schemas.Forecast, river_objectID bson.ObjectID) {
 	replace_result := db.RIVER_REPORTS.FindOneAndReplace(context.TODO(), filter, forecast_bson)
 	if replace_result.Err() == mongo.ErrNoDocuments {
 		// insert new document
+		fmt.Printf("Inserting new river forecast for: %s\n", forecast.River)
+
 		db.RIVER_REPORTS.InsertOne(context.TODO(), forecast_bson)
+	} else {
+		fmt.Printf("Overwrote river forecast for: %s\n", forecast.River)
+
 	}
 }

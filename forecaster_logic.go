@@ -13,7 +13,6 @@ func analyze(telemetry SiteData, data_site schemas.DataCollectionSite, current_f
 			successes = successes + 1
 		}
 	}
-
 	current_forecast.PointsOfInterestForecasts = append(current_forecast.PointsOfInterestForecasts, schemas.PointOfInterestForecast{
 		Name:     data_site.Name,
 		Runnable: successes > 6,

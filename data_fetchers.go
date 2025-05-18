@@ -94,7 +94,6 @@ func fetch_lcra_data(url string) ([]SiteSample, error) {
 
 		output = insertDataInDescendingOrder(output, current_record)
 	}
-
 	return output, nil
 
 }
@@ -175,7 +174,7 @@ func fetch_usgs_data(url string) ([]SiteSample, error) {
 // }
 
 func insertDataInDescendingOrder(data []SiteSample, sampletoinsert SiteSample) []SiteSample {
-	if len(data) == 0 || sampletoinsert.TimeStamp.After(data[0].TimeStamp) {
+	if len(data) == 0 || sampletoinsert.TimeStamp.Before(data[0].TimeStamp) {
 		data = append(data, sampletoinsert)
 	} else {
 		data = append([]SiteSample{sampletoinsert}, data...)
