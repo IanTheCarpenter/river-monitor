@@ -1,10 +1,11 @@
 package main
 
 import (
+	"github.com/IanTheCarpenter/river-monitor/external_apis"
 	"github.com/IanTheCarpenter/river-monitor/schemas"
 )
 
-func analyze(telemetry SiteData, data_site schemas.DataCollectionSite, current_forecast *schemas.Forecast) {
+func analyze(telemetry external_apis.SiteData, data_site schemas.DataCollectionSite, current_forecast *schemas.Forecast) {
 
 	successes := 0
 

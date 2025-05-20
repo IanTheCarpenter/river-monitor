@@ -6,23 +6,12 @@ import (
 	"time"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
+	"github.com/IanTheCarpenter/river-monitor/external_apis"
 	"github.com/IanTheCarpenter/river-monitor/schemas"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
-
-type SiteData struct {
-	SiteName string
-	// HasFlow bool
-	// HasStage bool
-	Records []SiteSample
-}
-type SiteSample struct {
-	TimeStamp time.Time
-	Stage     float64
-	Flow      float64
-}
 
 func main() {
 	NS_TO_MINUTES := 60000000000
@@ -31,7 +20,7 @@ func main() {
 	// begin loop
 	for {
 		fmt.Println("Regenerating Forecasts...")
-		rivers, err := fetch_river_definitions()
+		rivers, err := external_apis.Fetch_river_definitions()
 		if err != nil {
 			fmt.Println("UNABLE TO FETCH RIVERS")
 			fmt.Println(err.Error())
@@ -47,14 +36,14 @@ func main() {
 			}
 
 			for _, data_site := range current_river.DataCollectionSites {
-				var telemetry = SiteData{
+				var telemetry = external_apis.SiteData{
 					SiteName: data_site.Name,
 				}
 				switch data_site.Agency {
 				case "lcra":
-					telemetry.Records, err = fetch_lcra_data(data_site.URL)
+					telemetry.Records, err = external_apis.Fetch_lcra_data(data_site.URL)
 				case "usgs":
-					telemetry.Records, err = fetch_usgs_data(data_site.URL)
+					telemetry.Records, err = external_apis.Fetch_usgs_data(data_site.URL)
 				}
 				if err != nil {
 					fmt.Printf("Error fetching data for site: %s", data_site.Name)
