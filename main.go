@@ -3,10 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"time"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
-	"github.com/IanTheCarpenter/river-monitor/external_apis"
+	river_data "github.com/IanTheCarpenter/river-monitor/river-data"
 	"github.com/IanTheCarpenter/river-monitor/schemas"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -14,49 +13,50 @@ import (
 )
 
 func main() {
-	NS_TO_MINUTES := 60000000000
-	db.Init()
+	river_data.Build_river([]string{"2639515"})
+	// NS_TO_MINUTES := 60000000000
+	// db.Init()
 
-	// begin loop
-	for {
-		fmt.Println("Regenerating Forecasts...")
-		rivers, err := external_apis.Fetch_river_definitions()
-		if err != nil {
-			fmt.Println("UNABLE TO FETCH RIVERS")
-			fmt.Println(err.Error())
-		}
+	// // begin loop
+	// for {
+	// 	fmt.Println("Regenerating Forecasts...")
+	// 	rivers, err := external_apis.Fetch_river_definitions()
+	// 	if err != nil {
+	// 		fmt.Println("UNABLE TO FETCH RIVERS")
+	// 		fmt.Println(err.Error())
+	// 	}
 
-		for _, current_river := range rivers {
-			fmt.Printf("...Generating forecast for: %s river\n", current_river.RiverName)
-			var current_forecast = schemas.Forecast{
-				River:                     current_river.RiverName,
-				RiverObjectID:             current_river.ObjectID,
-				LastUpdated:               time.Now().GoString(),
-				PointsOfInterestForecasts: []schemas.PointOfInterestForecast{},
-			}
+	// 	for _, current_river := range rivers {
+	// 		fmt.Printf("...Generating forecast for: %s river\n", current_river.RiverName)
+	// 		var current_forecast = schemas.Forecast{
+	// 			River:                     current_river.RiverName,
+	// 			RiverObjectID:             current_river.ObjectID,
+	// 			LastUpdated:               time.Now().GoString(),
+	// 			PointsOfInterestForecasts: []schemas.PointOfInterestForecast{},
+	// 		}
 
-			for _, data_site := range current_river.DataCollectionSites {
-				var telemetry = external_apis.SiteData{
-					SiteName: data_site.Name,
-				}
-				switch data_site.Agency {
-				case "lcra":
-					telemetry.Records, err = external_apis.Fetch_lcra_data(data_site.URL)
-				case "usgs":
-					telemetry.Records, err = external_apis.Fetch_usgs_data(data_site.URL)
-				}
-				if err != nil {
-					fmt.Printf("Error fetching data for site: %s", data_site.Name)
-				}
+	// 		for _, data_site := range current_river.DataCollectionSites {
+	// 			var telemetry = external_apis.SiteData{
+	// 				SiteName: data_site.Name,
+	// 			}
+	// 			switch data_site.Agency {
+	// 			case "lcra":
+	// 				telemetry.Records, err = external_apis.Fetch_lcra_data(data_site.URL)
+	// 			case "usgs":
+	// 				telemetry.Records, err = external_apis.Fetch_usgs_data(data_site.URL)
+	// 			}
+	// 			if err != nil {
+	// 				fmt.Printf("Error fetching data for site: %s", data_site.Name)
+	// 			}
 
-				analyze(telemetry, data_site, &current_forecast)
+	// 			analyze(telemetry, data_site, &current_forecast)
 
-			}
-			insert_forecast(current_forecast, current_river.ObjectID)
-		}
-		fmt.Println("...Done!")
-		time.Sleep(time.Duration(5 * NS_TO_MINUTES))
-	}
+	// 		}
+	// 		insert_forecast(current_forecast, current_river.ObjectID)
+	// 	}
+	// 	fmt.Println("...Done!")
+	// 	time.Sleep(time.Duration(5 * NS_TO_MINUTES))
+	// }
 }
 
 func insert_forecast(forecast schemas.Forecast, river_objectID bson.ObjectID) {

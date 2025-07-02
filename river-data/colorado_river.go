@@ -15,9 +15,9 @@ var coloradoRiver = schemas.River{
 	},
 	DataCollectionSites: []schemas.DataCollectionSite{
 		{
-			Name:      "lcra_5423",
-			Agency:    "lcra",
-			URL:       "https://hydromet.lcra.org/api/GetDataBySite/5423/flow",
+			Name:   "lcra_5423",
+			Agency: "lcra",
+			// URL:       "https://hydromet.lcra.org/api/GetDataBySite/5423/flow",
 			Latitude:  30.22946835858506,
 			Longitude: -97.51890756915127,
 			Thresholds: schemas.Thresholds{

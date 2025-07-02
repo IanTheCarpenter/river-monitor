@@ -10,9 +10,10 @@ type River struct {
 }
 
 type DataCollectionSite struct {
-	Name       string     `bson:"name"`
-	Agency     string     `bson:"agency"`
-	URL        string     `bson:"url"`
+	Name   string `bson:"name"`
+	SiteID string `bson:"site_id"`
+	Agency string `bson:"agency"`
+	// URL        string     `bson:"url"`
 	Latitude   float64    `bson:"latitude"`
 	Longitude  float64    `bson:"longitude"`
 	Thresholds Thresholds `bson:"thresholds"`
