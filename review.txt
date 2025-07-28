@@ -1,0 +1,12 @@
+Overview:
+-- River schema: an object that contains a list of sites that correspond to real life data collection sites. These objects are in a mongodb table. They shouldn't change often
+-- A forecast builder will iterate through the river schemas and build a forecast object based on the data provided. For now, the predictions will only be based on whether or not the river is on a rise upstream of the given site.
+-- Users can select segments of the river to be alerted if they are on a rise
+
+Input on how to organize project
+- all packages in monorepo? Or many repos? How to share types?
+
+Forecaster- Goroutine vs Container?
+
+Better way to ingest diverse api data, process into uniform format?
+
