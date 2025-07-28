@@ -1,6 +1,6 @@
 // deprecated
 
-package river_data
+package riverdata
 
 import "github.com/IanTheCarpenter/river-monitor/schemas"
 

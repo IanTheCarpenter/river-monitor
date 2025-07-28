@@ -6,7 +6,7 @@ import (
 	"log"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
-	river_data "github.com/IanTheCarpenter/river-monitor/river-data"
+	"github.com/IanTheCarpenter/river-monitor/riverdata"
 	"github.com/IanTheCarpenter/river-monitor/schemas"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -96,7 +96,7 @@ func rebuild_all_rivers() {
 	}
 
 	for _, riverID := range rivers {
-		current_river, err := river_data.Build_river(riverID)
+		current_river, err := riverdata.Build_river(riverID)
 		if err != nil {
 			fmt.Sprintf("ERROR: Build failed on river ID: %s\n%s", riverID, err)
 			continue

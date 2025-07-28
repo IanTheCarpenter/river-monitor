@@ -1,0 +1,6 @@
+- [ ] don t use dash
+- [ ] make 2 commands server and forecast
+    - same docker container
+    - server mode serves up data
+    - forecaster gets stuff. use a k8s job on a cron schedule
+    - look into using spf13/cobra for command (use the cobra-cli to make a template repo and then copy your crap in)

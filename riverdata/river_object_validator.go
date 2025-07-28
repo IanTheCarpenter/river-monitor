@@ -1,4 +1,4 @@
-package river_data
+package riverdata
 
 import (
 	"fmt"
