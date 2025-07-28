@@ -22,10 +22,6 @@ var sanGabrielRiver = schemas.River{
 			// URL:       "https://waterservices.usgs.gov/nwis/iv/?sites=08105300&agencyCd=USGS&period=P1D&format=json",
 			Latitude:  30.646,
 			Longitude: -97.5852,
-			Thresholds: schemas.Thresholds{
-				High: 12,
-				Low:  7.5,
-			},
 		},
 	},
 }

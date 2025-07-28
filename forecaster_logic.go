@@ -5,12 +5,12 @@ import (
 	"github.com/IanTheCarpenter/river-monitor/schemas"
 )
 
-func analyze(telemetry external_apis.SiteData, data_site schemas.DataCollectionSite, current_forecast *schemas.Forecast) {
+func analyze(telemetry external_apis.SiteData, current_forecast *schemas.Forecast) {
 
 	successes := 0
 
 	for i := range 10 {
-		if data_site.Thresholds.Low < telemetry.Records[i].Stage && telemetry.Records[i].Stage < data_site.Thresholds.High {
+		if telemetry.StageThreshold < telemetry.Stage[i].Value && telemetry.Stage[i].Value < data_site.Thresholds.High {
 			successes = successes + 1
 		}
 	}

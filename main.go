@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"github.com/IanTheCarpenter/river-monitor/db"
 	river_data "github.com/IanTheCarpenter/river-monitor/river-data"
@@ -13,9 +14,10 @@ import (
 )
 
 func main() {
-	river_data.Build_river([]string{"2639515"})
+	db.Init()
+	rebuild_all_rivers()
+
 	// NS_TO_MINUTES := 60000000000
-	// db.Init()
 
 	// // begin loop
 	// for {
@@ -78,4 +80,44 @@ func insert_forecast(forecast schemas.Forecast, river_objectID bson.ObjectID) {
 		fmt.Printf("Overwrote river forecast for: %s\n", forecast.River)
 
 	}
+}
+
+func rebuild_all_rivers() {
+
+	deleted, err := db.RIVER_DEFINITIONS.DeleteMany(context.TODO(), bson.D{})
+	if err != nil {
+		log.Fatal("FATAL: UNABLE TO CLEAR RIVER SCHEMA DB")
+	}
+
+	fmt.Printf("Deleted %d river schemas!", deleted.DeletedCount)
+
+	rivers := []string{
+		"2639515",
+	}
+
+	for _, riverID := range rivers {
+		current_river, err := river_data.Build_river(riverID)
+		if err != nil {
+			fmt.Sprintf("ERROR: Build failed on river ID: %s\n%s", riverID, err)
+			continue
+		}
+		fmt.Println(current_river.RiverName)
+		insert_river(current_river)
+
+	}
+
+}
+
+//TODO:: troubleshoot why the schemas are being built incorrectly
+
+func insert_river(input schemas.River) {
+	fmt.Printf("inserting river: %s", input.RiverName)
+	river_bson, err := bson.Marshal(input)
+	if err != nil {
+		fmt.Printf("Unable to marshal river schema: %s\n", input.RiverName)
+		return
+	}
+
+	db.RIVER_DEFINITIONS.InsertOne(context.TODO(), river_bson)
+
 }

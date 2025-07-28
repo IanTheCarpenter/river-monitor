@@ -1,3 +1,5 @@
+// deprecated
+
 package river_data
 
 import "github.com/IanTheCarpenter/river-monitor/schemas"
@@ -20,10 +22,6 @@ var coloradoRiver = schemas.River{
 			// URL:       "https://hydromet.lcra.org/api/GetDataBySite/5423/flow",
 			Latitude:  30.22946835858506,
 			Longitude: -97.51890756915127,
-			Thresholds: schemas.Thresholds{
-				High: 12,
-				Low:  7.25,
-			},
 		},
 	},
 }
