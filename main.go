@@ -14,7 +14,9 @@ import (
 )
 
 func main() {
+
 	db.Init()
+
 	rebuild_all_rivers()
 
 	// NS_TO_MINUTES := 60000000000
@@ -89,7 +91,7 @@ func rebuild_all_rivers() {
 		log.Fatal("FATAL: UNABLE TO CLEAR RIVER SCHEMA DB")
 	}
 
-	fmt.Printf("Deleted %d river schemas!", deleted.DeletedCount)
+	fmt.Printf("Deleted %d river schemas!\n", deleted.DeletedCount)
 
 	rivers := []string{
 		"2639515",
@@ -98,7 +100,7 @@ func rebuild_all_rivers() {
 	for _, riverID := range rivers {
 		current_river, err := river_data.Build_river(riverID)
 		if err != nil {
-			fmt.Sprintf("ERROR: Build failed on river ID: %s\n%s", riverID, err)
+			fmt.Sprintf("ERROR: Build failed on river ID: %s\n%s\n", riverID, err)
 			continue
 		}
 		fmt.Println(current_river.RiverName)

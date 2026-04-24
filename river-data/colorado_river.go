@@ -10,8 +10,8 @@ var coloradoRiver = schemas.River{
 		{
 			Name:       "Little Webberville Park",
 			Type:       "Public Access",
-			Latitude:   30.22946835858506,
-			Longitude:  -97.51890756915127,
+			Latitude:   "30.22946835858506",
+			Longitude:  "-97.51890756915127",
 			Indicators: []string{"lcra_5423"},
 		},
 	},

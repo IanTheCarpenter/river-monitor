@@ -10,8 +10,8 @@ var sanGabrielRiver = schemas.River{
 		{
 			Name:       "Highway 29 Crossing",
 			Type:       "Public Access",
-			Latitude:   30.645658650442574,
-			Longitude:  -97.58441396892775,
+			Latitude:   "30.645658650442574",
+			Longitude:  "-97.58441396892775",
 			Indicators: []string{"usgs-08105300"},
 		},
 	},

@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -20,11 +19,21 @@ type usgs_values2 struct {
 }
 
 type usgs_source_info struct {
-	Name string `json:"siteName"`
+	Name        string           `json:"siteName"`
+	GeoLocation usgs_geolocation `json:"geoLocation"`
 }
 
 type usgs_variable struct {
 	VariableName string `json:"variableName"`
+}
+
+type usgs_geolocation struct {
+	GeoGlocation usgs_geoGLocation `json:"geogLocation"`
+}
+
+type usgs_geoGLocation struct {
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
 }
 
 type usgs_data_streams struct {
@@ -83,25 +92,31 @@ func USGS_FetchSite(site string, days int) (SiteData, error) {
 	// convert this data into type []external_apis.SiteSample
 	if len(usgs.Data.TimeSeries) < 1 {
 		fmt.Printf("No data returned for site: %s\n", site)
-		return SiteData{}, nil
-	}
-	fmt.Println()
-
-	var output = SiteData{
-		SiteName: usgs.Data.TimeSeries[0].SourceInfo.Name,
+		return SiteData{}, err
+	} else {
+		fmt.Printf("Data returned for site: %s\n", site)
 	}
 
-	//initialize values for site
-	for _, dataset := range usgs.Data.TimeSeries {
-		if strings.HasPrefix(dataset.Variable.VariableName, "Streamflow") {
-			output.Flow = usgs_convert_to_siteSamples(dataset.Values[0].Value, url)
-		} else if strings.HasPrefix(dataset.Variable.VariableName, "Gage height") {
-			output.Stage = usgs_convert_to_siteSamples(dataset.Values[0].Value, url)
+	var stage_data []SiteSample
+	var flow_data []SiteSample
 
-		} else {
-			continue
+	// separate stage data and flow data
+	for _, i := range usgs.Data.TimeSeries {
+		if i.Variable.VariableName == "Gage height, ft" {
+			stage_data = usgs_convert_to_siteSamples(i.Values[0].Value, url)
+		} else if i.Variable.VariableName == "Streamflow, ft3/s" {
+			flow_data = usgs_convert_to_siteSamples(i.Values[0].Value, url)
 		}
 	}
+
+	var output = SiteData{
+		SiteName:  usgs.Data.TimeSeries[0].SourceInfo.Name,
+		Latitude:  usgs.Data.TimeSeries[0].SourceInfo.GeoLocation.GeoGlocation.Latitude,
+		Longitude: usgs.Data.TimeSeries[0].SourceInfo.GeoLocation.GeoGlocation.Longitude,
+		Stage:     stage_data,
+		Flow:      flow_data,
+	}
+
 	return output, nil
 
 }

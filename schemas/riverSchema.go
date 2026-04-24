@@ -1,8 +1,6 @@
 package schemas
 
 import (
-	"time"
-
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
@@ -14,27 +12,20 @@ type River struct {
 }
 
 type DataCollectionSite struct {
-	Name      string          `bson:"name"`
-	SiteID    string          `bson:"site_id"`
-	Agency    string          `bson:"agency"`
-	Latitude  float64         `bson:"latitude"`
-	Longitude float64         `bson:"longitude"`
-	HasFlow   bool            `bson:"hasflow"`
-	Stage     StageThresholds `bson:"stage"`
+	Name      string  `bson:"name"`
+	SiteID    string  `bson:"site_id"`
+	Agency    string  `bson:"agency"`
+	Latitude  float64 `bson:"latitude"`
+	Longitude float64 `bson:"longitude"`
+	HasFlow   bool    `bson:"hasflow"`
 	// URL        string     `bson:"url"`
 }
 
-type StageThresholds struct {
-	Limit            float64   `bson:"high"`
-	Baseline         float64   `bson:"baseline"`
-	Samples          int       `bson:"samples"`
-	MostRecentSample time.Time `bson:"most_recent_sample_averaged"`
-}
-
+// not fully implemented
 type PointOfInterest struct {
 	Name       string   `bson:"name"`
 	Type       string   `bson:"type"`
-	Latitude   float64  `bson:"latitude"`
-	Longitude  float64  `bson:"longitude"`
+	Latitude   string   `bson:"latitude"`
+	Longitude  string   `bson:"longitude"`
 	Indicators []string `bson:"indicators"`
 }

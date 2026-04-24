@@ -16,6 +16,8 @@ import (
 type SiteData struct {
 	SiteName       string
 	StageThreshold float64
+	Latitude       float64
+	Longitude      float64
 	Flow           []SiteSample
 	Stage          []SiteSample
 }

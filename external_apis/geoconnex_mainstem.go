@@ -1,36 +1,36 @@
 package external_apis
 
-type Mainstem struct {
-	Properties Properties `json:"properties"`
+type GeoConnexMainstem struct {
+	Properties GeoConnexProperties `json:"properties"`
 }
 
-type Properties struct {
-	Name     string     `json:"name_at_outlet"`
-	Datasets []Location `json:"datasets"`
-	OutletID int64      `json:"outlet_nhdpv1_comid"`
+type GeoConnexProperties struct {
+	Name     string              `json:"name_at_outlet"`
+	Datasets []GeoConnexLocation `json:"datasets"`
+	OutletID int64               `json:"outlet_nhdpv1_comid"`
 }
 
-type Location struct {
+type GeoConnexLocation struct {
 	Name            string `json:"siteName"`
 	Type            string `json:"type"`
 	MeasurementType string `json:"variableMeasured"`
 	Coords          string `json:"wkt"`
 }
 
-type RawNavigationData struct {
-	Features []RawNavigationDataSite `json:"features"`
+type GeoConnexRawNavigationData struct {
+	Features []GeoConnexRawNavigationDataSite `json:"features"`
 }
 
-type RawNavigationDataSite struct {
-	Geometry   RawNavigationDataCoordinates `json:"geometry"`
-	Properties RawProperties                `json:"properties"`
+type GeoConnexRawNavigationDataSite struct {
+	Geometry   GeoConnexRawNavigationDataCoordinates `json:"geometry"`
+	Properties GeoConnexRawProperties                `json:"properties"`
 }
 
-type RawNavigationDataCoordinates struct {
+type GeoConnexRawNavigationDataCoordinates struct {
 	Coordinates string `json:"coordinates"`
 }
 
-type RawProperties struct {
+type GeoConnexRawProperties struct {
 	Name string `json:"name"`
 	Id   string `json:"identifier"`
 }
